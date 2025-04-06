@@ -1,0 +1,31 @@
+# サンプルドキュメント
+
+これはmarkitdownをテストするためのサンプルドキュメントです。
+
+## 機能の例
+
+markitdownは以下のような機能を持っています：
+
+1. 様々なファイル形式をMarkdownに変換
+2. ドキュメント構造を保持
+3. 簡単に使用できるAPI
+
+## コード例
+
+```python
+from markitdown import MarkItDown
+
+md = MarkItDown()
+result = md.convert("sample.txt")
+print(result.text_content)
+```
+
+## 表の例
+
+| 機能 | 説明 |
+|------|------|
+| PDF変換 | PDFファイルをMarkdownに変換 |
+| Word変換 | Wordファイルをマークダウンに変換 |
+| 画像処理 | 画像からテキストを抽出してMarkdownに変換 |
+
+詳細については[公式ドキュメント](https://github.com/microsoft/markitdown)を参照してください。

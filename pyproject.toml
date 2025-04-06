@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "markitdown-converter"
+version = "0.1.0"
+description = "MarkitDown Converter - A tool to convert various file formats to Markdown"
+authors = ["User"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.12,<3.13"
+markitdown = {extras = ["all"], version = "^0.1.1"}
+pillow = "^11.1.0"
+pyside6 = "^6.9.0"
+urllib3 = "^2.3.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
