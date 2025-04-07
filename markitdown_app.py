@@ -847,17 +847,32 @@ class MarkItDownApp(QMainWindow):
 
         if self.save_output_checkbox.isChecked():
             try:
+                # 出力ディレクトリを決定
+                # まず設定からデフォルトディレクトリを取得
+                default_dir = self.settings.value("defaultOutputDir", "")
+                
                 # 出力パスが指定されているかチェック
                 output_path = self.output_path_edit.text().strip()
-
-                # 出力ディレクトリを決定
-                try:
-                    output_dir = os.path.dirname(output_path)
-                    if not output_dir:  # ファイル名のみ指定された場合はカレントディレクトリ
-                        output_dir = os.getcwd()
-                except:
-                    # 設定から取得するか、デスクトップを使用
-                    default_dir = self.settings.value("defaultOutputDir", "")
+                
+                if output_path:
+                    # 出力パスが指定されている場合はそのディレクトリを使用
+                    try:
+                        output_dir = os.path.dirname(output_path)
+                        # ディレクトリが空（ファイル名のみ指定）の場合はデフォルトディレクトリを使用
+                        if not output_dir:
+                            if default_dir and os.path.isdir(default_dir):
+                                output_dir = default_dir
+                            else:
+                                output_dir = os.getcwd()
+                    except:
+                        # エラーが発生した場合はデフォルトディレクトリを使用
+                        if default_dir and os.path.isdir(default_dir):
+                            output_dir = default_dir
+                        else:
+                            # デフォルトディレクトリが設定されていない場合はデスクトップを使用
+                            output_dir = os.path.join(os.path.expanduser("~"), "Desktop")
+                else:
+                    # 出力パスが指定されていない場合はデフォルトディレクトリを使用
                     if default_dir and os.path.isdir(default_dir):
                         output_dir = default_dir
                     else:
